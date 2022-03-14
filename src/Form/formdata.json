@@ -18,7 +18,7 @@
     "sections": [
       {
         "sectionId": "1",
-        "description": "",
+        "description": "Đánh giá giá trị bản thân",
         "sectionTitle": "Tìm hiểu cá nhân",
         "sectionIndex": "0",
         "image": null,
@@ -27,14 +27,43 @@
           {
             "itemId": "1",
             "title": "Quê bạn có những địa điểm du lịch nổi tiếng nào?",
-            "kind": "Short Answer"
+            "description": "Bạn có thể liệt kê một vài địa điểm kèm đặc điểm nổi tiếng",
+            "kind": "Short Answer",
+            "isCompulsory": false
           },
           {
             "itemId": "2",
             "title": "Lý do vì sao bạn mong muốn vào SAB?",
-            "kind": "Long Paragraph"
+            "description": null,
+            "kind": "Paragraph",
+            "isCompulsory": true
+          },
+          {
+            "itemId": "3",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Title And Description",
+            "isCompulsory": false
+          },
+          {
+            "itemId": "4",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Multiple Choice",
+            "isCompulsory": false
           }
         ]
+      },
+      {
+        "sectionId": "2",
+        "description": "",
+        "sectionTitle": "Giải quyết vấn đề",
+        "sectionIndex": "1",
+        "image": null,
+        "video": null,
+        "items": {
+
+        }
       }
     ]
   }

@@ -18,7 +18,7 @@ const formData = data;
 
 const FormSubmit = () => 
 {
-    const [isQuiz, setIsQuiz] = useState(false);
+    const [isQuiz, setIsQuiz] = useState(formData.settings.quizSettings.isQuiz);
     const [sectionCurrentIndex, setSectionCurrentIndex] = useState(0);
 
     const onHandlePreviousClick = () => {
@@ -36,7 +36,10 @@ const FormSubmit = () =>
     return (
         <View style ={styles.container}>
             <View style={styles.main}>
-                <FormSubmitSection subSection={formData.sections[sectionCurrentIndex]} sectionIndex={sectionCurrentIndex}/>
+                <FormSubmitSection 
+                subSection={formData.sections[sectionCurrentIndex]} 
+                backgroundColor={formData.backgroundColor}
+                textColor={formData.textColor}/>
                 <View style={styles.buttonDisplayStyles}>
                     {sectionCurrentIndex != 0?
                         <Button onPress={onHandlePreviousClick} style={styles.buttonOptionStyles}>
@@ -68,23 +71,23 @@ const styles = StyleSheet.create({
     },
     main: {
         marginTop: 10,
-        paddingHorizontal: 30,
-        marginRight: 10
+        paddingHorizontal: 25,
+        marginRight: 5
     },
     buttonDisplayStyles: {
         flexDirection: "row",
     },
     buttonOptionStyles: {
-        marginHorizontal: 5,
         borderColor: "grey",
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRadius: 5,
         borderLeftWidth: 15,
         borderRightWidth: 15,
         borderTopWidth: 5,
         borderBottomWidth: 5,
         backgroundColor: "white",
-        color: formData.textColor
+        color: formData.textColor,
+        
     }
 })
 

@@ -1,0 +1,1 @@
+export {default as ParagraphQuestion} from "./ParagraphQuestion"

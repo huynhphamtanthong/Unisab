@@ -6,29 +6,52 @@ import {
     StyleSheet,
     Image,
     ScrollView,
-    TextInput
+    TextInput,
+    FlatList
 } from "react-native"
 
 import { FormSubmitQuestion } from "./FormSubmitQuestion"
 import { FormSectionHeader } from "./FormSectionHeader"
 
-const FormSubmitSection = ({subSection, sectionIndex}) => {
+const FormSubmitSection = ({subSection, backgroundColor, textColor}) => {
+    const renderItem = ({item}) => {    
+        return (
+            <View style={styles.body_part}>
+                    <FormSubmitQuestion 
+                    item={item}
+                    backgroundColor={backgroundColor}
+                    textColor={textColor}/>
+            </View>
+        )
+    }
     return (
-        <View>
-            <FormSectionHeader/>
-            {subSection?.items.map((item) => {
-                <FormSubmitQuestion item={item}/>
-            })}
+        <View style={styles.container}>
+            <View style={styles.header_part}>
+                <FormSectionHeader
+                subSection={subSection}
+                backgroundColor={backgroundColor}
+                textColor={textColor}
+                />
+            </View>
+            <FlatList 
+            data={subSection.items}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.itemId}
+            extraData={[backgroundColor, textColor]}/>
         </View>
-    )
+    )    
 }
 
 const styles = StyleSheet.create({
-    main: {
+    container: {
 
     },
-    section: {
-        
+    header_part: {
+        paddingBottom: 5,
+        paddingTop: 5
+    },
+    body_part:{
+        paddingBottom: 5
     }
 })
 

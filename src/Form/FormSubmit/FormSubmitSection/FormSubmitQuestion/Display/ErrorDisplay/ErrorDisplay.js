@@ -1,0 +1,49 @@
+import React, {useState, useEffect} from "react"
+
+import {
+    Text,
+    View,
+    StyleSheet,
+    Image,
+    ScrollView,
+    TextInput
+} from "react-native"
+
+const ErrorDisplay = ({isError, isTextMax, isBlank, isCompulsory}) => {
+    return (
+        <View >
+            {isError?
+                <View style={styles.error_notify}>
+                    <Text style={styles.error_notify_icon}>Icon</Text>
+                    {isTextMax?
+                        <Text style={styles.error_notify_text}>
+                            Câu trả lời ngắn chỉ bao gồm tối đa 50 kí tự
+                        </Text>:<></>
+                    }
+                    {isBlank && isCompulsory?
+                        <Text style={styles.error_notify_text}>
+                            Phần này không được để trống
+                        </Text>:<></>
+                    }
+                </View>:<></>
+            }
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    error_notify: {
+        flexDirection: "row"
+    },
+    error_notify_icon: {
+        fontSize: 12,
+        color: "red",
+        marginRight: 5
+    },
+    error_notify_text: {
+        fontSize: 12,
+        color: "red"
+    }
+})
+
+export default ErrorDisplay
