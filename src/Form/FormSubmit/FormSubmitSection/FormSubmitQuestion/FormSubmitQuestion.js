@@ -20,7 +20,7 @@ import { ParagraphQuestion } from "./ParagraphQuestion"
 import { ShortAnswerQuestion } from "./ShortAnswerQuestion"
 import { TimeQuestion } from "./TimeQuestion"
 import { TitleAndDescription } from "./TitleAndDescription"
-const FormSubmitQuestion = ({item, backgroundColor, textColor}) => {
+const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
     return (
         <View>
             {item?.kind == "Short Answer"? 
@@ -48,6 +48,17 @@ const FormSubmitQuestion = ({item, backgroundColor, textColor}) => {
                 title={item?.title}
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
+                choices={item?.choices}
+                interfaceColor={interfaceColor}
+                />:<></>
+            }
+            {item?.kind == "Checkbox"?
+                <CheckboxQuestion
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                choices={item?.choices}
+                interfaceColor={interfaceColor}
                 />:<></>
             }
         </View>

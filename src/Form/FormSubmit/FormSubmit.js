@@ -39,7 +39,7 @@ const FormSubmit = () =>
                 <FormSubmitSection 
                 subSection={formData.sections[sectionCurrentIndex]} 
                 backgroundColor={formData.backgroundColor}
-                textColor={formData.textColor}/>
+                interfaceColor={formData.interfaceColor}/>
                 <View style={styles.buttonDisplayStyles}>
                     {sectionCurrentIndex != 0?
                         <Button onPress={onHandlePreviousClick} style={styles.buttonOptionStyles}>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 5,
         borderBottomWidth: 5,
         backgroundColor: "white",
-        color: formData.textColor,
+        color: formData.interfaceColor,
         
     }
 })

@@ -9,10 +9,10 @@ import {
     TextInput
 } from "react-native"
 
-const FormSectionHeader = ({subSection, backgroundColor, textColor}) => {
+const FormSectionHeader = ({subSection, backgroundColor, interfaceColor}) => {
     return (
         <View style={styles.container}>
-            <View style={[{backgroundColor: textColor, height:5, }, styles.header_color]}></View>
+            <View style={[{backgroundColor: interfaceColor, height:5, }, styles.header_color]}></View>
             <View style={styles.header_content}>
                 <Text style={styles.title}>
                     {subSection?.sectionTitle}

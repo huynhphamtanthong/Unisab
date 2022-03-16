@@ -12,8 +12,8 @@
     },
     "revisionId": "00000021",
     "backgroundColor": "#f0ebf8",
-    "textColor": "#673ab7",
-    "sectionCount": "4",
+    "interfaceColor": "#673ab7",
+    "sectionCount": "2",
     "responderUri": "https://docs.google.com/forms/d/e/1FAIpQLSd0iBLPh4suZoGW938EU1WIxzObQv_jXto0nT2U8HH2KsI5dg/viewform",
     "sections": [
       {
@@ -50,7 +50,42 @@
             "title": "Bạn hãy cân nhắc",
             "description": "Vì sao",
             "kind": "Multiple Choice",
-            "isCompulsory": false
+            "isCompulsory": false,
+            "choices":[
+              {
+                "id" : "1",
+                "name" : "Đi picnic"
+              },
+              {
+                "id" : "2",
+                "name" : "Đi camping"
+              },
+              {
+                "id" : "3",
+                "name" : "Homestay"
+              }
+            ]
+          },
+          {
+            "itemId": "5",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Checkbox",
+            "isCompulsory": false,
+            "choices":[
+              {
+                "id" : "1",
+                "name" : "Vũng Tàu"
+              },
+              {
+                "id" : "2",
+                "name" : "TPHCM"
+              },
+              {
+                "id" : "3",
+                "name" : "Đà Lạt"
+              }
+            ]
           }
         ]
       },

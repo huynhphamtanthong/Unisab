@@ -13,14 +13,14 @@ import {
 import { FormSubmitQuestion } from "./FormSubmitQuestion"
 import { FormSectionHeader } from "./FormSectionHeader"
 
-const FormSubmitSection = ({subSection, backgroundColor, textColor}) => {
+const FormSubmitSection = ({subSection, backgroundColor, interfaceColor}) => {
     const renderItem = ({item}) => {    
         return (
             <View style={styles.body_part}>
                     <FormSubmitQuestion 
                     item={item}
                     backgroundColor={backgroundColor}
-                    textColor={textColor}/>
+                    interfaceColor={interfaceColor}/>
             </View>
         )
     }
@@ -30,14 +30,14 @@ const FormSubmitSection = ({subSection, backgroundColor, textColor}) => {
                 <FormSectionHeader
                 subSection={subSection}
                 backgroundColor={backgroundColor}
-                textColor={textColor}
+                interfaceColor={interfaceColor}
                 />
             </View>
             <FlatList 
             data={subSection.items}
             renderItem={renderItem}
             keyExtractor={(item) => item.itemId}
-            extraData={[backgroundColor, textColor]}/>
+            extraData={[backgroundColor, interfaceColor]}/>
         </View>
     )    
 }
