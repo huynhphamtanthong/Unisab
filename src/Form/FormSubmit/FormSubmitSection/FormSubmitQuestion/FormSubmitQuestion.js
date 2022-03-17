@@ -22,7 +22,7 @@ import { TimeQuestion } from "./TimeQuestion"
 import { TitleAndDescription } from "./TitleAndDescription"
 const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
     return (
-        <View>
+        <SafeAreaView>
             {item?.kind == "Short Answer"? 
                 <ShortAnswerQuestion 
                 title={item?.title}
@@ -61,7 +61,18 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 interfaceColor={interfaceColor}
                 />:<></>
             }
-        </View>
+            {item?.kind == "Dropdown"?
+                <DropdownQuestion
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                choices={item?.choices}
+                isMultipleSelected={item?.isMultipleSelected}
+                backgroundColor={backgroundColor}
+                interfaceColor={interfaceColor}
+                />:<></>
+            }
+        </SafeAreaView>
     )
 }
 

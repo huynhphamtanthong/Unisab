@@ -15,34 +15,39 @@ import { TitleAndDescriptionInside } from "../Display/TitleAndDescriptionInside"
 const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceColor}) => 
 {
     const [isQuiz, setIsQuiz] = useState(false);
-    const [onPressButton, setOnPressButton] = useState(false);
-    const [currentIndexPressed, setCurrentIndexPressed] = useState(-1);
-    const onPress = (index) => {
-        if(index == currentIndexPressed){
-            setCurrentIndexPressed(-1);
-            setOnPressButton(false);
-        }
-        else {
-            setCurrentIndexPressed(index);
-            setOnPressButton(true);
-        }
+    const [onPressButton, setOnPressButton] = useState(choices.map(() => false));
+    const onPress = (itemIndex) => {
+        setOnPressButton(onPressButton.map(
+            (item, index) => (index == itemIndex? (item ? false : true) : item)));
     }
     const renderChoice = ({item, index}) => {
         return (
-            <TouchableOpacity style={styles.button} onPress={() => onPress(index)} activeOpacity={1}>
-                {index == currentIndexPressed && onPressButton? 
-                    <View style={[styles.picker_button,{borderColor: interfaceColor}]}>
-                        <View style={
-                            [styles.picker_button_on_press_inside,
-                            {borderColor: interfaceColor},
-                            {backgroundColor: interfaceColor} ]}>
-                        </View>
-                    </View>
-                    :
-                    <View style={styles.picker_button}></View>
-                }
-                <Text style={styles.picker_text}>{item.name}</Text>
-            </TouchableOpacity>
+            <View>
+                {onPressButton.map((it, ind) => (ind == index ? 
+                    <TouchableOpacity style={styles.button} onPress={() => onPress(index)} activeOpacity={1}>
+                        {it?
+                            <View style={[styles.picker_button,{borderColor: interfaceColor}]}>
+                                <View style={
+                                    [styles.picker_button_on_press_inside_left,
+                                    {borderColor: interfaceColor,
+                                    backgroundColor: interfaceColor} ]}>
+                                        <View style={styles.picker_button_icon_left}/>
+                                </View>
+                                <View style={
+                                    [styles.picker_button_on_press_inside_right,
+                                    {borderColor: interfaceColor,
+                                    backgroundColor: interfaceColor} ]}>
+                                        <View style={styles.picker_button_icon_right} />
+                                </View>
+                            </View>
+                            :
+                            <View style={styles.picker_button}></View>
+                        }
+                        <Text style={styles.picker_text}>{item.name}</Text>
+                    </TouchableOpacity>
+                    : <></> 
+                ))}
+            </View>
         )
     }
 
@@ -79,20 +84,47 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     picker_button: {
-        borderRadius: 1,
+        borderRadius: 4,
         borderWidth: 1.5,
         width: 20,
         height: 20,
         backgroundColor: "white",
-        marginVertical: 5
+        marginVertical: 5,
+        flexDirection: "row"
     },
-    picker_button_on_press_inside: {
-        borderRadius: 1,
+    picker_button_on_press_inside_left: {
+        borderRadius: 0,
         borderWidth: 1,
-        width: 12,
+        width: 7,
+        height: 18,
+    },
+    picker_button_on_press_inside_right: {
+        borderRadius: 0,
+        borderWidth: 1,
+        width: 10,
+        height: 18,
+    },
+    picker_button_icon_left: {
+        borderRadius: 0,
+        borderWidth: 0.3,
+        width: 2,
+        height: 5,
+        transform: [{rotate: "-45deg"}],
+        borderColor: "white",
+        backgroundColor: "white",
+        marginTop: 7,
+        marginLeft: 2
+    },
+    picker_button_icon_right: {
+        borderRadius: 0,
+        borderWidth: 0.3,
+        width: 2,
         height: 12,
-        marginVertical: 2.5,
-        marginHorizontal: 2.5
+        transform: [{rotate: "45deg"}],
+        borderColor: "white",
+        backgroundColor: "white",
+        marginTop: 1.5,
+        marginRight: 2
     },
     picker_text: {
         marginVertical: 5,

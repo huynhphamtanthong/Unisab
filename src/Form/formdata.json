@@ -86,6 +86,28 @@
                 "name" : "Đà Lạt"
               }
             ]
+          }, 
+          {
+            "itemId": "6",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Dropdown",
+            "isCompulsory": false,
+            "isMultipleSelected": false,
+            "choices":[
+              {
+                "id" : "1",
+                "name" : "Cơm"
+              },
+              {
+                "id" : "2",
+                "name" : "Bánh mì"
+              },
+              {
+                "id" : "3",
+                "name" : "Phở"
+              }
+            ]
           }
         ]
       },
@@ -96,9 +118,9 @@
         "sectionIndex": "1",
         "image": null,
         "video": null,
-        "items": {
+        "items": [
 
-        }
+        ]
       }
     ]
   }
