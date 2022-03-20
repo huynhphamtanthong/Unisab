@@ -22,6 +22,25 @@ const DateQuestion = ({title, description, isCompulsory}) =>
                     description={description}
                     isCompulsory={isCompulsory}
                 />
+                <Text>Note: Date Picker library not working</Text>
+                {/* <TouchableOpacity 
+                style={[styles.button, {backgroundColor: interfaceColor}]}
+                onPress={() => setOpen(true)}>
+                    <Text style={styles.button_text}>Chọn</Text>
+                </TouchableOpacity>
+                <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    onConfirm={(date) => {
+                    setOpen(false)
+                    console.log("add date to holidays array", date)
+                    }}
+                    onCancel={() => {
+                    setOpen(false)
+                    }}
+                    mode="date"
+                /> */}
             </View>
         </View>
     )

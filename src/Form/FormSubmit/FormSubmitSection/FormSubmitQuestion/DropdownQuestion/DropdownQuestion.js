@@ -11,18 +11,27 @@ import {
 } from "react-native"
 import { ErrorDisplay } from "../Display/ErrorDisplay";
 import { TitleAndDescriptionInside } from "../Display/TitleAndDescriptionInside";
-import DropDownPicker from "react-native-dropdown-picker";
-const DropdownQuestion = ({title, description, isCompulsory, choices,isMultipleSelected, backgroundColor, interfaceColor}) => 
+import ModalDropdown from "react-native-modal-dropdown";
+const DropdownQuestion = ({title, description, isCompulsory, choices}) => 
 {
     const [isQuiz, setIsQuiz] = useState(false);
     const [onButtonClick, setOnButtonClick] = useState(true);
-    const [open, setOpen] = useState(true);
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState(choices.map(
-        (item) => {return({"id":item.id, "label":item.name, "val":item.name})}));
+    const [indexValue, setIndexValue] = useState(-1);
+    const [isBlank, setIsBlank] = useState(false);
+    const [compulsoryError, setCompulsoryError] =useState(false);
+    const [items, setItems] = useState(choices.map((item) => item.name));
 
-    const onPress = () => {
-        setOnButtonClick(!onButtonClick)
+    useEffect(() => {
+        if(indexValue == - 1){
+            setIsBlank(true);
+        }
+        else {
+            setIsBlank(false);
+        }
+    })
+
+    const onSelect = (index) => {
+        setIndexValue(index);
     }
     return (
         <View style={styles.container}>
@@ -33,17 +42,22 @@ const DropdownQuestion = ({title, description, isCompulsory, choices,isMultipleS
                     isCompulsory={isCompulsory}
                 />
                 <View style={styles.dropdown_view}>
-                    <DropDownPicker
-                    open={open}
-                    value={value}
-                    items={items}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    multiple={isMultipleSelected}
-                    style={styles.dropdown_button}
-                    placeholder={"Chọn"}/>
+                    <ModalDropdown 
+                    style={styles.dropdown_button} 
+                    options={items}
+                    defaultValue={"Chọn"}
+                    textStyle={styles.dropdown_button_text}
+                    dropdownTextStyle={styles.dropdown_button_text}
+                    onSelect={(index) => onSelect(index)}
+                    />
                 </View>
+                <ErrorDisplay 
+                    isError={isBlank}  
+                    isTextMax={false}
+                    isBlank={isBlank}
+                    isCompulsoryError={false}
+                    isCompulsory={isCompulsory}
+                />
             </View>
         </View>
     )
@@ -60,12 +74,21 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     dropdown_view: {
-        minHeight: 50
+        minHeight: 50,
     },
     dropdown_button: {
-        zIndex: 1000,
-        height: 40,
         marginVertical: 10,
+        borderWidth: 1,
+        borderRadius: 5,
+        height: 30,
+        width: 150,
+        fontSize: 20,
+        alignItems: "flex-start",
+        justifyContent: "center",
+    }, 
+    dropdown_button_text: {
+        fontSize: 15,
+        marginHorizontal: 10
     }
 })
 

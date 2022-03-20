@@ -9,10 +9,10 @@ import {
     TextInput
 } from "react-native"
 
-const ErrorDisplay = ({isError, isTextMax, isBlank, isCompulsory}) => {
+const ErrorDisplay = ({isError, isTextMax, isBlank, isCompulsoryError, isCompulsory}) => {
     return (
         <View >
-            {isError?
+            {isError && isCompulsory?
                 <View style={styles.error_notify}>
                     <Text style={styles.error_notify_icon}>Icon</Text>
                     {isTextMax?
@@ -22,7 +22,12 @@ const ErrorDisplay = ({isError, isTextMax, isBlank, isCompulsory}) => {
                     }
                     {isBlank && isCompulsory?
                         <Text style={styles.error_notify_text}>
-                            Phần này không được để trống
+                            Đây là câu hỏi bắt buộc
+                        </Text>:<></>
+                    }
+                    {isCompulsoryError && isCompulsory?
+                        <Text style={styles.error_notify_text}>
+                            Đây là câu hỏi bắt buộc
                         </Text>:<></>
                     }
                 </View>:<></>

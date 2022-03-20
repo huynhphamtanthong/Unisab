@@ -20,11 +20,9 @@ const ParagraphQuestion = ({title, description, isCompulsory}) =>
         if(isCompulsory){
             if(answer.length == 0){
                 setIsBlank(true);
-                setIsError(true);
             }
             else{
                 setIsBlank(false);
-                setIsError(false);
             }
         }
     }, [answer])
@@ -44,7 +42,7 @@ const ParagraphQuestion = ({title, description, isCompulsory}) =>
                 </TextInput>
                 <View style={[{backgroundColor: "grey", height: 0.5}, styles.line_under_answer]}/>
                 <ErrorDisplay 
-                    isError={isError}  
+                    isError={isBlank}  
                     isTextMax={false}
                     isBlank={isBlank}
                     isCompulsory={isCompulsory}

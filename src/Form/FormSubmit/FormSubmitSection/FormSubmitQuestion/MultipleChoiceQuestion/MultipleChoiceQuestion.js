@@ -18,14 +18,24 @@ const MultipleChoiceQuestion = ({title, description, isCompulsory, choices, inte
     const [isQuiz, setIsQuiz] = useState(false);
     const [onPressButton, setOnPressButton] = useState(false);
     const [currentIndexPressed, setCurrentIndexPressed] = useState(-1);
+    const [compulsoryError, setCompulsoryError] = useState(false);
+    const [isBlank, setIsBlank] = useState(false);
+    useEffect(() => {
+        setIsBlank(currentIndexPressed == -1 ? true : false)
+    }, [currentIndexPressed]) 
     const onPress = (index) => {
-        if(index == currentIndexPressed){
+        if(index == currentIndexPressed && !isCompulsory){
             setCurrentIndexPressed(-1);
             setOnPressButton(false);
+            setCompulsoryError(false);
+        }
+        else if(index == currentIndexPressed && isCompulsory){
+            setCompulsoryError(true);
         }
         else {
             setCurrentIndexPressed(index);
             setOnPressButton(true);
+            setCompulsoryError(false);
         }
     }
     const renderChoice = ({item, index}) => {
@@ -60,6 +70,13 @@ const MultipleChoiceQuestion = ({title, description, isCompulsory, choices, inte
                 renderItem={renderChoice}
                 keyExtractor={(choice) => choice.id}
                 extraData={[interfaceColor]}/>
+                <ErrorDisplay 
+                    isError={isBlank||compulsoryError}  
+                    isTextMax={false}
+                    isBlank={isBlank}
+                    isCompulsoryError={compulsoryError}
+                    isCompulsory={isCompulsory}
+                />
             </View>
         </View>
     )

@@ -16,9 +16,29 @@ const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceC
 {
     const [isQuiz, setIsQuiz] = useState(false);
     const [onPressButton, setOnPressButton] = useState(choices.map(() => false));
-    const onPress = (itemIndex) => {
+    const [compulsoryError, setCompulsoryError] = useState(false);
+    const [isBlank, setIsBlank] = useState(false);
+    useEffect(() => {
+        setIsBlank(!onPressButton.find(item => item == true));
+    },[onPressButton])
+    const onPress = (index) => {
+        console.log(isBlank)
+        console.log(onPressButton)
         setOnPressButton(onPressButton.map(
-            (item, index) => (index == itemIndex? (item ? false : true) : item)));
+            (it, ind) => (ind == index? (it ? false : true) : it))
+        );
+        console.log(onPressButton)
+        if(onPressButton[index] == true){
+            console.log(isBlank)
+            if(isBlank) {
+                setCompulsoryError(true)
+            }
+            else {
+                setCompulsoryError(false)
+            }
+        }
+        console.log(isBlank)
+        console.log(onPressButton)
     }
     const renderChoice = ({item, index}) => {
         return (
@@ -44,6 +64,7 @@ const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceC
                             <View style={styles.picker_button}></View>
                         }
                         <Text style={styles.picker_text}>{item.name}</Text>
+                        
                     </TouchableOpacity>
                     : <></> 
                 ))}
@@ -64,6 +85,12 @@ const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceC
                 renderItem={renderChoice}
                 keyExtractor={(choice) => choice.id}
                 extraData={[interfaceColor]}/>
+                <ErrorDisplay
+                    isError={isBlank || compulsoryError}
+                    isTextMax={false}
+                    isBlank={compulsoryError? false :isBlank}
+                    isCompulsoryError={compulsoryError}
+                    isCompulsory={isCompulsory}/>
             </View>
         </View>
     )

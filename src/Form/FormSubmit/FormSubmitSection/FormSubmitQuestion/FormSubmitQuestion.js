@@ -67,10 +67,55 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
                 choices={item?.choices}
-                isMultipleSelected={item?.isMultipleSelected}
-                backgroundColor={backgroundColor}
+                />:<></>
+            }
+            {item?.kind == "Linear Scale"?
+                <LinearScaleQuestion
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                startIndex={item?.startIndex}
+                endIndex={item?.endIndex}
+                leftItem={item?.leftItem}
+                rightItem={item?.rightItem}
                 interfaceColor={interfaceColor}
                 />:<></>
+            }
+            {item?.kind == "Multiple Choice Grid"?
+                <MultipleChoiceGridQuestion
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                column={item?.column}
+                row={item?.row}
+                interfaceColor={interfaceColor}
+                /> : <></>
+            }
+            {item?.kind == "Checkbox Grid"?
+                <CheckboxGridQuestion
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                column={item?.column}
+                row={item?.row}
+                interfaceColor={interfaceColor}
+                /> : <></>
+            }
+            {item?.kind == "Time"?
+                <TimeQuestion 
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                interfaceColor={interfaceColor}
+                /> : <></>
+            }
+            {item?.kind == "Date"?
+                <DateQuestion 
+                title={item?.title}
+                description={item?.description}
+                isCompulsory={item?.isCompulsory}
+                interfaceColor={interfaceColor}
+                /> : <></>
             }
         </SafeAreaView>
     )

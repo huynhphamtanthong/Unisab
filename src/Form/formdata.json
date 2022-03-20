@@ -50,7 +50,7 @@
             "title": "Bạn hãy cân nhắc",
             "description": "Vì sao",
             "kind": "Multiple Choice",
-            "isCompulsory": false,
+            "isCompulsory": true,
             "choices":[
               {
                 "id" : "1",
@@ -71,7 +71,7 @@
             "title": "Bạn hãy cân nhắc",
             "description": "Vì sao",
             "kind": "Checkbox",
-            "isCompulsory": false,
+            "isCompulsory": true,
             "choices":[
               {
                 "id" : "1",
@@ -92,8 +92,7 @@
             "title": "Bạn hãy cân nhắc",
             "description": "Vì sao",
             "kind": "Dropdown",
-            "isCompulsory": false,
-            "isMultipleSelected": false,
+            "isCompulsory": true,
             "choices":[
               {
                 "id" : "1",
@@ -106,8 +105,55 @@
               {
                 "id" : "3",
                 "name" : "Phở"
+              },
+              {
+                "id" : "4",
+                "name" : "Không có"
               }
             ]
+          },
+          {
+            "itemId": "7",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Linear Scale",
+            "isCompulsory": true,
+            "startIndex": "0",
+            "endIndex": "5",
+            "leftItem": "Không\nhài lòng",
+            "rightItem": "Rất\nhài lòng"
+          },
+          {
+            "itemId": "8",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Multiple Choice Grid",
+            "isCompulsory": true,
+            "row": ["Algorithms \nand Complexity", "Software \nAnalysis \nand Design", "Operating\nSystems"],
+            "column": ["7h30-\n9h10","9h30-\n11h10", "13h30-\n15h10","15h30-\n17h10"]
+          },
+          {
+            "itemId": "9",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Checkbox Grid",
+            "isCompulsory": true,
+            "row": ["Algorithms \nand Complexity", "Software \nAnalysis \nand Design", "Operating\nSystems"],
+            "column": ["7h30-\n9h10","9h30-\n11h10", "13h30-\n15h10","15h30-\n17h10"]
+          },
+          {
+            "itemId" : "10",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Time",
+            "isCompulsory": true
+          },
+          {
+            "itemId" : "11",
+            "title": "Bạn hãy cân nhắc",
+            "description": "Vì sao",
+            "kind": "Date",
+            "isCompulsory": true
           }
         ]
       },
