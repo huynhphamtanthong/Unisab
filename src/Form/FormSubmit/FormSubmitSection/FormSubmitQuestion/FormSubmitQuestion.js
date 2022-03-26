@@ -28,6 +28,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 title={item?.title}
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
+                value={item?.value}
                 /> : <></>
             }
             {item?.kind == "Paragraph"?
@@ -35,6 +36,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 title={item?.title}
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
+                value={item?.value}
                 /> : <></>
             }
             {item?.kind == "Title And Description"?
@@ -50,6 +52,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 isCompulsory={item?.isCompulsory}
                 choices={item?.choices}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 />:<></>
             }
             {item?.kind == "Checkbox"?
@@ -59,6 +62,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 isCompulsory={item?.isCompulsory}
                 choices={item?.choices}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 />:<></>
             }
             {item?.kind == "Dropdown"?
@@ -67,6 +71,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
                 choices={item?.choices}
+                value={item?.value}
                 />:<></>
             }
             {item?.kind == "Linear Scale"?
@@ -79,6 +84,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 leftItem={item?.leftItem}
                 rightItem={item?.rightItem}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 />:<></>
             }
             {item?.kind == "Multiple Choice Grid"?
@@ -89,6 +95,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 column={item?.column}
                 row={item?.row}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 /> : <></>
             }
             {item?.kind == "Checkbox Grid"?
@@ -99,6 +106,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 column={item?.column}
                 row={item?.row}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 /> : <></>
             }
             {item?.kind == "Time"?
@@ -107,6 +115,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 /> : <></>
             }
             {item?.kind == "Date"?
@@ -115,6 +124,7 @@ const FormSubmitQuestion = ({item, backgroundColor, interfaceColor}) => {
                 description={item?.description}
                 isCompulsory={item?.isCompulsory}
                 interfaceColor={interfaceColor}
+                value={item?.value}
                 /> : <></>
             }
         </SafeAreaView>

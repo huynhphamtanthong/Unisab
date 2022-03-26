@@ -10,13 +10,19 @@ import {
 } from "react-native"
 import { ErrorDisplay } from "../Display/ErrorDisplay";
 import { TitleAndDescriptionInside } from "../Display/TitleAndDescriptionInside";
-const ShortAnswerQuestion = ({title, description, isCompulsory}) => 
+const ShortAnswerQuestion = ({title, description, isCompulsory, value}) => 
 {
     const textMax = 50;
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState(value);
     const [isTextMax, setIsTextMax] = useState(false);
     const [isBlank, setIsBlank] = useState(false); 
     const [isError, setIsError] = useState(false);
+    const [isEditing, setIsEditing] = useState(-1);
+
+    const onChangeEditing = (_edit) => {
+        _edit ? setIsEditing(s => 1) : setIsEditing(s => 0)
+    }
+
     useEffect(() => {
         if(answer.length > textMax){
             setIsTextMax(true);
@@ -51,6 +57,9 @@ const ShortAnswerQuestion = ({title, description, isCompulsory}) =>
                 style={styles.answer_part}
                 placeholder="Câu trả lời của bạn"
                 onChangeText={setAnswer}
+                defaultValue={value}
+                onEndEditing={() => onChangeEditing(false)}
+                onPressIn={() => onChangeEditing(true)}
                 >
                 </TextInput>
                 <View style={[{backgroundColor: "grey", height: 0.5}, styles.line_under_answer]}/>
@@ -59,6 +68,7 @@ const ShortAnswerQuestion = ({title, description, isCompulsory}) =>
                     isTextMax={isTextMax}
                     isBlank={isBlank}
                     isCompulsory={isCompulsory}
+                    isEditing={isEditing}
                 />
             </View>
         </View>

@@ -10,11 +10,16 @@ import {
 } from "react-native"
 import { ErrorDisplay } from "../Display/ErrorDisplay";
 import { TitleAndDescriptionInside } from "../Display/TitleAndDescriptionInside";
-const ParagraphQuestion = ({title, description, isCompulsory}) => 
+const ParagraphQuestion = ({title, description, isCompulsory, value}) => 
 {
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState(value);
     const [isBlank, setIsBlank] = useState(false); 
     const [isError, setIsError] = useState(false);
+    const [isEditing, setIsEditing] = useState(-1);
+
+    const onChangeEditing = (_edit) => {
+        _edit ? setIsEditing(s => 1) : setIsEditing(s => 0)
+    }
 
     useEffect(() => {
         if(isCompulsory){
@@ -38,6 +43,9 @@ const ParagraphQuestion = ({title, description, isCompulsory}) =>
                 style={styles.answer_part}
                 placeholder="Câu trả lời của bạn"
                 onChangeText={setAnswer}
+                defaultValue={value}
+                onEndEditing={() => onChangeEditing(false)}
+                onPressIn={() => onChangeEditing(true)}
                 >
                 </TextInput>
                 <View style={[{backgroundColor: "grey", height: 0.5}, styles.line_under_answer]}/>
@@ -46,6 +54,7 @@ const ParagraphQuestion = ({title, description, isCompulsory}) =>
                     isTextMax={false}
                     isBlank={isBlank}
                     isCompulsory={isCompulsory}
+                    isEditing={isEditing}
                 />
             </View>
         </View>

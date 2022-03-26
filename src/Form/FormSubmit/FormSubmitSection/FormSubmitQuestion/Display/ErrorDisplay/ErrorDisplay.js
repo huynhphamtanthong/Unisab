@@ -9,10 +9,10 @@ import {
     TextInput
 } from "react-native"
 
-const ErrorDisplay = ({isError, isTextMax, isBlank, isCompulsoryError, isCompulsory}) => {
+const ErrorDisplay = ({isError, isTextMax, isBlank, isCompulsoryError, isCompulsory, isEditing}) => {
     return (
         <View >
-            {isError && isCompulsory?
+            {isError && isCompulsory && isEditing == 0 ?
                 <View style={styles.error_notify}>
                     <Text style={styles.error_notify_icon}>Icon</Text>
                     {isTextMax?

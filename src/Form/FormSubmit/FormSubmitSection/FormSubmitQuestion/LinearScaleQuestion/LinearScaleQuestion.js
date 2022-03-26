@@ -24,6 +24,7 @@ const LinearScaleQuestion = ({title, description, isCompulsory, startIndex, endI
     const [currentIndexPressed, setCurrentIndexPressed] = useState(-1);
     const [compulsoryError, setCompulsoryError] = useState(false);
     const [isBlank, setIsBlank] = useState(false);
+    const [isRender, setIsRender] = useState(false);
     useEffect(() => {
         setIsBlank(currentIndexPressed == -1 ? true : false)
     }, [currentIndexPressed]) 
@@ -41,6 +42,7 @@ const LinearScaleQuestion = ({title, description, isCompulsory, startIndex, endI
             setOnPressButton(true);
             setCompulsoryError(false);
         }
+        setIsRender(true);
     }
     const renderItem = ({item, index}) => {
         return (
@@ -89,6 +91,7 @@ const LinearScaleQuestion = ({title, description, isCompulsory, startIndex, endI
                     isBlank={isBlank}
                     isCompulsoryError={compulsoryError}
                     isCompulsory={isCompulsory}
+                    isEditing={!isRender}
                 />
             </View>
         </View>

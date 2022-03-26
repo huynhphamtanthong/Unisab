@@ -18,6 +18,7 @@ const CheckboxGridQuestion = ({title, description, isCompulsory, column, row, in
     const [onPressButton, setOnPressButton] = useState([...Array(row.length).fill([...Array(column.length).fill(false)])]);
     const [compulsoryError, setCompulsoryError] = useState(false);
     const [isBlank, setIsBlank] = useState(false);
+    const [isRender, setIsRender] = useState(false);
     const searchCheckingEmpty = () => {
         for(let it of onPressButton){
             let columnIndex = 0;
@@ -45,11 +46,13 @@ const CheckboxGridQuestion = ({title, description, isCompulsory, column, row, in
             else {
                 setCompulsoryError(false)
             }
+            setIsRender(true);
         }
         else {
             setOnPressButton(onPressButton.map(
                 (it0, ind0) => ind0 == rowIndex ? (it0.map((it1, ind1) => (ind1 == index? (it1 ? false : true) : it1))) : it0)
             );
+            setIsRender(false);
         }
     }
     const renderListItem = ({item, index}) => {
@@ -128,7 +131,9 @@ const CheckboxGridQuestion = ({title, description, isCompulsory, column, row, in
                     isTextMax={false}
                     isBlank={compulsoryError ? false : isBlank}
                     isCompulsoryError={compulsoryError}
-                    isCompulsory={isCompulsory}/>
+                    isCompulsory={isCompulsory}
+                    isEditing={!isRender}
+                />
             </View>
         </View>
     )

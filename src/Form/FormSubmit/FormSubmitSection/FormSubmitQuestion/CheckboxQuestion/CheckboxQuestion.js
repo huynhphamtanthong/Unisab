@@ -18,18 +18,15 @@ const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceC
     const [onPressButton, setOnPressButton] = useState(choices.map(() => false));
     const [compulsoryError, setCompulsoryError] = useState(false);
     const [isBlank, setIsBlank] = useState(false);
+    const [isRender, setIsRender] = useState(false);
     useEffect(() => {
         setIsBlank(!onPressButton.find(item => item == true));
     },[onPressButton])
     const onPress = (index) => {
-        console.log(isBlank)
-        console.log(onPressButton)
         setOnPressButton(onPressButton.map(
             (it, ind) => (ind == index? (it ? false : true) : it))
         );
-        console.log(onPressButton)
         if(onPressButton[index] == true){
-            console.log(isBlank)
             if(isBlank) {
                 setCompulsoryError(true)
             }
@@ -37,8 +34,7 @@ const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceC
                 setCompulsoryError(false)
             }
         }
-        console.log(isBlank)
-        console.log(onPressButton)
+        setIsRender(true);
     }
     const renderChoice = ({item, index}) => {
         return (
@@ -90,7 +86,9 @@ const CheckboxQuestion = ({title, description, isCompulsory, choices, interfaceC
                     isTextMax={false}
                     isBlank={compulsoryError? false :isBlank}
                     isCompulsoryError={compulsoryError}
-                    isCompulsory={isCompulsory}/>
+                    isCompulsory={isCompulsory}
+                    isEditing={!isRender}
+                />
             </View>
         </View>
     )

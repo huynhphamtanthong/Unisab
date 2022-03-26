@@ -16,17 +16,27 @@ import { FormSectionHeader } from "./FormSectionHeader"
 const FormSubmitSection = ({dataForm, backgroundColor, interfaceColor, totalSection}) => {
     const [sectionCurrentIndex, setSectionCurrentIndex] = useState(0);
     const [data, setData] = useState(dataForm); 
+    const [isError, setIsError] = useState(false);
+
+    const onCheckError = (error) => {
+        setIsError(s => error);
+    }
+
     const onHandlePreviousClick = () => {
         setSectionCurrentIndex(s => s-1);
     }
 
     const onHandleNextClick = () => {
-        console.log("av",sectionCurrentIndex);
         setSectionCurrentIndex(s => s+1);
     }
 
-    const onHandleSubmit = () => {
-        
+    const onHandleSubmit = (isError) => {
+        if(!isError){
+            
+        } 
+        else {
+
+        }
     }
     const renderItem = ({item}) => {    
         return (

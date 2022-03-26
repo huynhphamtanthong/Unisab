@@ -19,6 +19,7 @@ const MultipleChoiceGridQuestion = ({title, description, isCompulsory, column, r
     const [currentIndexPressed, setCurrentIndexPressed] = useState([...Array(row.length).fill(-1)]);
     const [compulsoryError, setCompulsoryError] = useState(false);
     const [isBlank, setIsBlank] = useState(false);
+    const [isRender, setIsRender] = useState(false);
     useEffect(() => {
         setIsBlank(currentIndexPressed.find((item) => item == -1) == -1 ? true : false)
     }, [currentIndexPressed]) 
@@ -32,11 +33,13 @@ const MultipleChoiceGridQuestion = ({title, description, isCompulsory, column, r
             else {
                 setCompulsoryError(true);
             }
+            setIsRender(true);
         }
         else {
             setCurrentIndexPressed(currentIndexPressed.map((i, ind) => ind == rowIndex ? index : i));
             setOnPressButton(onPressButton.map((i, ind) => ind == rowIndex ? true : i));
             setCompulsoryError(false);
+            setIsRender(false);
         }
     }
     const renderListItem = ({item, index}) => {
@@ -105,6 +108,7 @@ const MultipleChoiceGridQuestion = ({title, description, isCompulsory, column, r
                     isBlank={compulsoryError ? false : isBlank}
                     isCompulsoryError={compulsoryError}
                     isCompulsory={isCompulsory}
+                    isEditing={!isRender}
                 />
             </View>
         </View>

@@ -13,13 +13,16 @@ import {
 
 import { ErrorDisplay } from "../Display/ErrorDisplay";
 import { TitleAndDescriptionInside } from "../Display/TitleAndDescriptionInside";
-const MultipleChoiceQuestion = ({title, description, isCompulsory, choices, interfaceColor}) => 
+const MultipleChoiceQuestion = ({title, description, isCompulsory, choices, interfaceColor, value}) => 
 {
     const [isQuiz, setIsQuiz] = useState(false);
     const [onPressButton, setOnPressButton] = useState(false);
-    const [currentIndexPressed, setCurrentIndexPressed] = useState(-1);
+    const [currentIndexPressed, setCurrentIndexPressed] = useState(value);
     const [compulsoryError, setCompulsoryError] = useState(false);
+    const [currentValue, setCurrentValue] = useState(value);
     const [isBlank, setIsBlank] = useState(false);
+    const [isRender, setIsRender] = useState(false);
+
     useEffect(() => {
         setIsBlank(currentIndexPressed == -1 ? true : false)
     }, [currentIndexPressed]) 
@@ -37,6 +40,7 @@ const MultipleChoiceQuestion = ({title, description, isCompulsory, choices, inte
             setOnPressButton(true);
             setCompulsoryError(false);
         }
+        setIsRender(true);
     }
     const renderChoice = ({item, index}) => {
         return (
@@ -76,6 +80,7 @@ const MultipleChoiceQuestion = ({title, description, isCompulsory, choices, inte
                     isBlank={isBlank}
                     isCompulsoryError={compulsoryError}
                     isCompulsory={isCompulsory}
+                    isEditing={!isRender}
                 />
             </View>
         </View>
